@@ -9,7 +9,7 @@ public class Enemy : IDamagable
 
 
     // components
-    protected Animator anim;
+    [SerializeField] protected Animator anim;
 
     // control variables
     [SerializeField] protected float attackRange;
@@ -19,6 +19,7 @@ public class Enemy : IDamagable
 
     protected override void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         base.Start();
         anim = GetComponent<Animator>();
     }

@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : IDamagable
+public class Projectile : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float lifeTime;
     // Start is called before the first frame update
-    protected override void Start()
+    void Start()
     {
-        base.Start();
         Destroy(gameObject, lifeTime);
     }
 

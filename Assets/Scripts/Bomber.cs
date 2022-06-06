@@ -69,7 +69,7 @@ public class Bomber : Enemy
         Debug.Log(bombingType);
         explosion.Play();
         anim.SetBool(bombingType, true);
-        isDead = true;
+        TakeDamage(hp);
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         bool playerFound = false;
         foreach (Collider chars in colliders)

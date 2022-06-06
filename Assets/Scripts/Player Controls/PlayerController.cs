@@ -100,7 +100,7 @@ public class PlayerController : IDamagable
         base.TakeDamage(amount);
         if (isDead)
         {
-            anim.SetBool("IsDead", true);
+            anim.SetBool("IsDead", true);   
         }
     }
 }
