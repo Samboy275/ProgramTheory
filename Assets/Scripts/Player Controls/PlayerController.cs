@@ -18,8 +18,9 @@ public class PlayerController : IDamagable
     private Animator anim;
     [SerializeField] LayerMask groundMask;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         gun = GetComponentInChildren<Weapon>();
         velocity = 0;
         anim = GetComponent<Animator>();
@@ -28,12 +29,15 @@ public class PlayerController : IDamagable
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (!isDead)
         {
-            gun.Shoot();
+            if (Input.GetButtonDown("Fire1"))
+            {
+                gun.Shoot();
+            }
+            Movement();
+            Aim();
         }
-        Movement();
-        Aim();
     }
 
 
@@ -94,7 +98,9 @@ public class PlayerController : IDamagable
     override public void TakeDamage(int amount = 1)
     {
         base.TakeDamage(amount);
-        if (hp <= 0)
-            Debug.Log("Game Over");
+        if (isDead)
+        {
+            anim.SetBool("IsDead", true);
+        }
     }
 }

@@ -89,4 +89,11 @@ public class Bomber : Enemy
             }
         }
     }
+
+
+    // void OnDrawGizmosSelected()
+    // {
+    //     Gizmos.color = Color.yellow;
+    //     Gizmos.DrawWireSphere(transform.position, explosionRadius);
+    // }
 }

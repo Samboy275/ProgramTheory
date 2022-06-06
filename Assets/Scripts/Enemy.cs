@@ -16,11 +16,10 @@ public class Enemy : IDamagable
     private float velocity;
     [SerializeField] private float acceleration;
     [SerializeField] private float maxSpeed;
-    protected bool isDead;
 
-    virtual protected void Start()
+    protected override void Start()
     {
-        isDead = false;
+        base.Start();
         anim = GetComponent<Animator>();
     }
     virtual protected void Update()
@@ -89,9 +88,8 @@ public class Enemy : IDamagable
     override public void TakeDamage(int amount = 1)
     {
         base.TakeDamage(amount);
-        if (hp <= 0)
+        if (isDead)
         {
-            isDead = true;
             anim.SetBool("IsDead", isDead);
             //Destroy(gameObject, 10);
         }
