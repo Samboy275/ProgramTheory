@@ -11,19 +11,25 @@ public class PlayerController : IDamagable
     // control variables
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float acceleration = 0.6f;
-    [SerializeField] private Weapon gun;
+    [SerializeField] private FireArm gun;
+    private List<GameObject> bombs;
+    [SerializeField] private GameObject bomb;
     private float velocity;
 
     // components
     private Animator anim;
     [SerializeField] LayerMask groundMask;
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        bombs = new List<GameObject>();
+        gun = GetComponentInChildren<FireArm>();
+        velocity = 0;
+        anim = GetComponent<Animator>();
+    }
+
     protected override void Start()
     {
         base.Start();
-        gun = GetComponentInChildren<Weapon>();
-        velocity = 0;
-        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,6 +40,13 @@ public class PlayerController : IDamagable
             if (Input.GetButtonDown("Fire1"))
             {
                 gun.Shoot();
+            }
+            if (Input.GetKeyDown(KeyCode.Space) && bombs.Count > 0)
+            {
+                bombs[0].GetComponent<PickUp>().SetBombPosition(transform.position);
+                bombs[0].SetActive(true);
+                bombs[0].GetComponent<Bomb>().StartTimer();
+                bombs.RemoveAt(0);
             }
             Movement();
             Aim();
@@ -95,12 +108,18 @@ public class PlayerController : IDamagable
 
 
     // POLYMORPHISM
-    override public void TakeDamage(int amount = 1)
+    override public void TakeDamage(int amount = 1  )
     {
         base.TakeDamage(amount);
         if (isDead)
         {
             anim.SetBool("IsDead", true);   
         }
+    }
+
+
+    public void PickUpBomb(GameObject bomb)
+    {
+        bombs.Add(bomb);
     }
 }

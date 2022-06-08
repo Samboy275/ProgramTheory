@@ -21,9 +21,10 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision Other)
     {
-        if (Other.gameObject.CompareTag("Player"))
+        IDamagable refrence = Other.gameObject.GetComponent<IDamagable>();
+        if (refrence != null)
         {
-            Other.gameObject.GetComponent<PlayerController>().TakeDamage();
+            refrence.TakeDamage();
         }
         Destroy(gameObject);
     }

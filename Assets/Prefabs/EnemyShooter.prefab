@@ -663,6 +663,7 @@ MonoBehaviour:
   hp: 3
   healthBar: {fileID: 5860381386408485859}
   player: {fileID: 0}
+  anim: {fileID: 8794388731604974047}
   attackRange: 5
   acceleration: 1
   maxSpeed: 4
@@ -1239,7 +1240,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.01499815, y: 0.07063988, z: 0.012535322}
+  m_Size: {x: 0.04, y: 0.07063988, z: 0.012535322}
   m_Center: {x: -0.00021027477, y: 0.01, z: 0.00005619601}
 --- !u!1 &7443450136925871684
 GameObject:
@@ -1504,6 +1505,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.22720242
       objectReference: {fileID: 0}
+    - target: {fileID: 8944746978805283151, guid: 3633d264ba3275d46854582b7f680afb, type: 3}
+      propertyPath: fill
+      value: 
+      objectReference: {fileID: 1519267798789964645}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3633d264ba3275d46854582b7f680afb, type: 3}
 --- !u!224 &2503201929121982390 stripped
@@ -1520,5 +1525,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03d0a0c2ddfbdfc4aab6c47ef2da703a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1519267798789964645 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4063328978177317321, guid: 3633d264ba3275d46854582b7f680afb, type: 3}
+  m_PrefabInstance: {fileID: 3275909331230366380}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

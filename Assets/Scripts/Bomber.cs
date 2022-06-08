@@ -8,6 +8,7 @@ public class Bomber : Enemy
 
     // game objects
     [SerializeField] private ParticleSystem explosion;
+    private Bomb bomb;
     // control variables
     [SerializeField] private float bombTime;
     [SerializeField] private float startBombRange;
@@ -17,6 +18,7 @@ public class Bomber : Enemy
     protected override void Start()
     {
         isTicking = false;
+        bomb = GetComponentInChildren<Bomb>();
         base.Start();
     }
 
@@ -28,14 +30,12 @@ public class Bomber : Enemy
             if (Vector3.Distance(transform.position, player.position) < startBombRange && !isTicking)
             {
                 isTicking = true;
+                bomb.StartTimer();
             }
-            else if (isTicking)
-            {
-                BombTimer();
-            }
+            base.Update();
         }
 
-        base.Update();
+        
     }
 
     // POLYMORPHISM
@@ -47,53 +47,35 @@ public class Bomber : Enemy
         }
         base.FollowPlayer();
     }
-    private void BombTimer()
-    {
-       bombTime -= Time.deltaTime;
-
-       if (bombTime <= 0)
-       {
-            Explode("IsDead");
-       }   
-    }
 
     // POLYMORPHISM
     protected override void Attack()
     {
-        Explode("Bombing");
+        bomb.Explode();
     }
 
-
-    private void Explode(string bombingType) // create explosion and apply damage to objects in radius
+    public void Die()
     {
-        Debug.Log(bombingType);
-        explosion.Play();
-        anim.SetBool(bombingType, true);
+        anim.SetBool("Bombing", true);
         TakeDamage(hp);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        bool playerFound = false;
-        foreach (Collider chars in colliders)
+    }
+
+    public override void TakeDamage(int amount)
+    {
+        base.TakeDamage();
+        
+        if (isDead && !isTicking)
         {
-            if (chars.transform.root.tag == "Player")
-            {
-                if(!playerFound)
-                {
-                    playerFound = true;
-                    Debug.Log(chars.transform.root.tag);
-                    player.GetComponent<IDamagable>().TakeDamage(3);
-                }
-            }
-            else if (chars.transform.root.tag == "Enemy")
-            {
-                chars.transform.root.GetComponent<IDamagable>().TakeDamage(3);
-            }
+            // drop a bomb for the player to pick up
+            PickUp pickup =  GetComponentInChildren<PickUp>();
+            pickup.enabled = true;
+            pickup.Drop();
         }
     }
 
+    private void OnDestroy()
+    {
 
-    // void OnDrawGizmosSelected()
-    // {
-    //     Gizmos.color = Color.yellow;
-    //     Gizmos.DrawWireSphere(transform.position, explosionRadius);
-    // }
+    }
+
 }
