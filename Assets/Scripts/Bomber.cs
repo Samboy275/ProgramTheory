@@ -7,7 +7,6 @@ public class Bomber : Enemy
 {
 
     // game objects
-    [SerializeField] private ParticleSystem explosion;
     private Bomb bomb;
     // control variables
     [SerializeField] private float bombTime;

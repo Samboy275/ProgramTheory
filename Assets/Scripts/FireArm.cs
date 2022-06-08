@@ -27,9 +27,12 @@ public class FireArm : Weapon
 
             if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 50f, enemyMask))
             {
-                TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, firePoint.rotation);
-                hit.transform.GetComponent<Enemy>().TakeDamage(dmgAmount);
-                StartCoroutine(SpawnTrail(trail, hit));
+                    TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, firePoint.rotation);
+                    StartCoroutine(SpawnTrail(trail, hit));
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    hit.transform.GetComponent<Enemy>().TakeDamage(dmgAmount);
+                }
             }
         }
     }
@@ -47,6 +50,6 @@ public class FireArm : Weapon
             yield return null; 
         }
         trail.transform.position = hit.point;
-        Destroy(trail, trail.time);
+        Destroy(trail.transform.gameObject, trail.time);
     }
 }

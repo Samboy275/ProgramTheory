@@ -17,15 +17,21 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("colliding");
+        Debug.Log("colliding with " + this.tag);
         Transform player = other.transform.root;
         if (player.tag == "Player")
         {
             // add item to the inventory
-            player.GetComponent<PlayerController>().PickUpBomb(transform.gameObject);
-            gameObject.SetActive(false);
-            GetComponent<BoxCollider>().enabled = false;
-            this.enabled = false;
+            if (this.tag == "Bomb")
+            {
+                if (!player.GetComponent<PlayerController>().BombsFull())
+                {
+                    player.GetComponent<PlayerController>().PickUpBomb(transform.gameObject);
+                    gameObject.SetActive(false);
+                    GetComponent<BoxCollider>().enabled = false;
+                    this.enabled = false;
+                }
+            }
         }
     }
 

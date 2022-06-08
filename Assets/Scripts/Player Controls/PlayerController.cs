@@ -13,7 +13,7 @@ public class PlayerController : IDamagable
     [SerializeField] private float acceleration = 0.6f;
     [SerializeField] private FireArm gun;
     private List<GameObject> bombs;
-    [SerializeField] private GameObject bomb;
+    [SerializeField] private int bombsLimit;
     private float velocity;
 
     // components
@@ -121,5 +121,23 @@ public class PlayerController : IDamagable
     public void PickUpBomb(GameObject bomb)
     {
         bombs.Add(bomb);
+    }
+
+
+
+    public bool BombsFull()
+    {
+        if (bombs.Count == bombsLimit)
+        {
+            return true;
+        }
+        
+        return false;
+    }
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+
     }
 }

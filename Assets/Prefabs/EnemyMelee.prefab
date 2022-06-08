@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 237874354191640707}
   - component: {fileID: 6173649636171543289}
   - component: {fileID: 344419868485907237}
-  - component: {fileID: 344419868485907238}
+  - component: {fileID: 1381062200}
   m_Layer: 7
   m_Name: EnemyMelee
   m_TagString: Enemy
@@ -164,7 +164,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &344419868485907238
+--- !u!114 &1381062200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,16 +173,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 578371541989126713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d586010290a857f42bfdffc7c305b45c, type: 3}
+  m_Script: {fileID: 11500000, guid: ba9d84c6472d1a64997d447deda6f48e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
   healthBar: {fileID: 1474807324858196931}
   player: {fileID: 0}
-  anim: {fileID: 0}
-  attackRange: 1
+  anim: {fileID: 6173649636171543289}
+  attackRange: 0.35
   acceleration: 1
-  maxSpeed: 4
+  maxSpeed: 5
+  dmgAmount: 2
 --- !u!1 &1054648119128737077
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,6 +986,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3755629060186954790}
+  - component: {fileID: 1478425749}
   m_Layer: 7
   m_Name: Arm2.R
   m_TagString: Untagged
@@ -1007,6 +1009,19 @@ Transform:
   m_Father: {fileID: 3151976604437137741}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1478425749
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6299810751260501981}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.002, y: 0.02, z: 0.002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7158862562799239043
 GameObject:
   m_ObjectHideFlags: 0
@@ -1208,7 +1223,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.04, y: 0.07063988, z: 0.012535322}
+  m_Size: {x: 0.02, y: 0.07063988, z: 0.012535322}
   m_Center: {x: -0.00021027477, y: 0.01, z: 0.00005619601}
 --- !u!1 &8242505307316417194
 GameObject:
@@ -1249,6 +1264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3425334476625868821}
+  - component: {fileID: 1013876919}
   m_Layer: 7
   m_Name: Arm2.L
   m_TagString: Untagged
@@ -1271,6 +1287,19 @@ Transform:
   m_Father: {fileID: 5155257920078449018}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1013876919
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850824421342889756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.002, y: 0.02, z: 0.002}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8910303177977314175
 GameObject:
   m_ObjectHideFlags: 0

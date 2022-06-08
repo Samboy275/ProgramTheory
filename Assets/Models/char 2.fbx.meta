@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: 1751e50adf030674fa7f1f5af7a5d77a
+guid: f6a3f3b9755a2d248bb2d52243fc73cd
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: -1437223564310770781
     second: Armature|0Tpose
+  - first:
+      74: 4723146814002874508
+    second: Armature|Attack
   - first:
       74: 2311647704355561812
     second: Armature|DeathBack
@@ -27,9 +30,6 @@ ModelImporter:
   - first:
       74: -4465990978703531126
     second: Armature|RunWithJump
-  - first:
-      74: -6788291789069941537
-    second: Armature|SphereAction
   - first:
       74: 8349542763059015795
     second: Armature|Walk
@@ -76,6 +76,35 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Attack
+      takeName: Armature|Attack
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -153,15 +182,15 @@ ModelImporter:
       takeName: Armature|Idle
       internalID: 0
       firstFrame: 0
-      lastFrame: 22
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -182,7 +211,7 @@ ModelImporter:
       takeName: Armature|Jump
       internalID: 0
       firstFrame: 0
-      lastFrame: 22
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -240,15 +269,15 @@ ModelImporter:
       takeName: Armature|Run
       internalID: 0
       firstFrame: 0
-      lastFrame: 22
+      lastFrame: 24
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -298,15 +327,15 @@ ModelImporter:
       takeName: Armature|Walk
       internalID: 0
       firstFrame: 0
-      lastFrame: 22
+      lastFrame: 23
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -529,18 +558,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: char 1(Clone)
+    - name: char 2(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: body
-      parentName: char 1(Clone)
+      parentName: char 2(Clone)
       position: {x: -0, y: 6.272925, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Armature
-      parentName: char 1(Clone)
+      parentName: char 2(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
       scale: {x: 100, y: 100, z: 100}
@@ -672,8 +701,8 @@ ModelImporter:
     - name: KneePoint.L
       parentName: Armature
       position: {x: -0.005591666, y: -0.0072235423, z: 0.01149636}
-      rotation: {x: 0.7591455, y: -0.000000029802326, z: 0.65092105, w: -0.0000001192093}
-      scale: {x: 0.99999976, y: 0.9999997, z: 0.9999998}
+      rotation: {x: 0.7591455, y: -0.000000059604645, z: 0.65092105, w: -0.00000014901161}
+      scale: {x: 1, y: 0.9999998, z: 1}
     - name: KneePoint.L_end
       parentName: KneePoint.L
       position: {x: -0, y: 0.004347324, z: 0}
@@ -692,8 +721,8 @@ ModelImporter:
     - name: KneePoint.R
       parentName: Armature
       position: {x: 0.005591666, y: -0.0072235423, z: 0.01149636}
-      rotation: {x: 0.7591455, y: 0.000000029802326, z: -0.65092105, w: -0.0000001192093}
-      scale: {x: 0.99999976, y: 0.9999997, z: 0.9999998}
+      rotation: {x: 0.7591455, y: 0.000000059604645, z: -0.65092105, w: -0.00000014901161}
+      scale: {x: 1, y: 0.9999998, z: 1}
     - name: KneePoint.R_end
       parentName: KneePoint.R
       position: {x: -0, y: 0.004347324, z: 0}
