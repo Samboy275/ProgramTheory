@@ -96,4 +96,19 @@ public class Enemy : IDamagable
         }
     }
 
+
+    void OnMouseEnter()
+    {
+        if (!isDead)
+        {
+            Debug.Log("checked");
+            CursorManager.instance.SetCursor();
+        }
+    }
+
+    void OnMouseExit()
+    {
+        CursorManager.instance.SetDefaultCursor();
+    }
+
 }
