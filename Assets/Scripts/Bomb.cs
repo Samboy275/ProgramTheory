@@ -8,18 +8,17 @@ public class Bomb : Weapon
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private float explosionRadius;
     //[SerializeField] private bool isChild;
-    private MeshRenderer mesh;
-    private bool exploded;
-    [SerializeField] private bool ticking = false;
+    [SerializeField] private MeshRenderer mesh;
+    protected bool exploded;
+    private bool ticking = false;
     
 
-    private void Start()
+    protected virtual void Start()
     {
-        mesh = GetComponent<MeshRenderer>();
         exploded = false;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (ticking)
         {
@@ -61,7 +60,7 @@ public class Bomb : Weapon
                     chars.transform.root.GetComponent<IDamagable>().TakeDamage(dmgAmount);
                 }
             }
-            else if (chars.transform.root.tag == "Enemy")
+            else if (chars.transform.root.tag == "Enemy" || chars.transform.root.tag == "Bomber")
             {
                 chars.transform.root.GetComponent<IDamagable>().TakeDamage(dmgAmount);
             }

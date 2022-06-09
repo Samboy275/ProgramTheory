@@ -37,7 +37,7 @@ public class PlayerController : IDamagable
     {
         if (!isDead)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButton("Fire1"))
             {
                 gun.Shoot();
             }
@@ -113,6 +113,7 @@ public class PlayerController : IDamagable
         base.TakeDamage(amount);
         if (isDead)
         {
+            anim.SetLayerWeight(1, 0);
             anim.SetBool("IsDead", true);   
         }
     }

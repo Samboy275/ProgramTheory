@@ -31,4 +31,14 @@ public class ProjectileEnemy : Enemy
                 GameObject shootedProjectile = Instantiate(projectile, firePosition.position, firePosition.rotation);
             }
     }
+
+
+    public override void TakeDamage(int amount = 1)
+    {
+        if (amount >= hp)
+        {
+            anim.SetLayerWeight(1, 0);
+        }
+        base.TakeDamage(amount);
+    }
 }

@@ -115,8 +115,7 @@ MonoBehaviour:
   timeToExplode: 3
   explosion: {fileID: 2011276763536751725}
   explosionRadius: 2
-  isChild: 0
-  ticking: 0
+  mesh: {fileID: 3764124165976035877}
 --- !u!114 &2291538995285621985
 MonoBehaviour:
   m_ObjectHideFlags: 0

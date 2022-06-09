@@ -14,7 +14,13 @@ public class FireArm : Weapon
     [SerializeField] TrailRenderer bulletTrail;
     [SerializeField] LayerMask enemyMask;
 
+    [SerializeField] Transform wasitRotation;
 
+
+    private void Update()
+    {
+        transform.rotation = wasitRotation.rotation;
+    }
 
     public virtual void Shoot()
     {
