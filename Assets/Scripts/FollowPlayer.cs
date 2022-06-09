@@ -5,6 +5,7 @@ using UnityEngine;
 public class FollowPlayer : MonoBehaviour
 {
     [SerializeField] Transform playerPos;
+    [SerializeField] float threshold;
 
     private Vector3 offset;
     // Start is called before the first frame update
@@ -16,6 +17,12 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = playerPos.position + offset; 
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 targetPos = (playerPos.position + offset + mousePos)/2;
+
+        targetPos.x = Mathf.Clamp(targetPos.x, targetPos.x - threshold, targetPos.x + threshold);
+        targetPos.z = Mathf.Clamp(targetPos.z, targetPos.z - threshold, targetPos.z + threshold);
+        targetPos.y = transform.position.y;
+        transform.position = targetPos;
     }
 }

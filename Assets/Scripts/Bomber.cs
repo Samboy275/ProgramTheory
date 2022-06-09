@@ -40,10 +40,6 @@ public class Bomber : Enemy
     // POLYMORPHISM
     protected override void FollowPlayer()
     {
-        if (PlayerInRange())
-        {
-            anim.SetBool("Bombing", true);
-        }
         base.FollowPlayer();
     }
 
@@ -51,10 +47,6 @@ public class Bomber : Enemy
     protected override void Attack()
     {
         bomb.Explode();
-    }
-
-    public void Die()
-    {
         anim.SetBool("Bombing", true);
         TakeDamage(hp);
     }
@@ -62,13 +54,16 @@ public class Bomber : Enemy
     public override void TakeDamage(int amount)
     {
         base.TakeDamage();
-        
-        if (isDead && !isTicking)
+        if (isDead)
         {
-            // drop a bomb for the player to pick up
-            PickUp pickup =  GetComponentInChildren<PickUp>();
-            pickup.enabled = true;
-            pickup.Drop();
+            if (!isTicking)
+            {
+                // drop a bomb for the player to pick up
+                anim.SetBool("IsDead", true);
+                PickUp pickup =  GetComponentInChildren<PickUp>();
+                pickup.enabled = true;
+                pickup.Drop();
+            }
         }
     }
 

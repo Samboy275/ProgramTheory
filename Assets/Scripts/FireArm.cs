@@ -24,8 +24,8 @@ public class FireArm : Weapon
             Debug.Log("shooting");  
             nextBulletTime = Time.time  + 1f / fireRate;
             RaycastHit hit;
-
-            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 50f, enemyMask))
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hit, 50f, enemyMask))
             {
                     TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, firePoint.rotation);
                     StartCoroutine(SpawnTrail(trail, hit));

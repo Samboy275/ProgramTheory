@@ -7,7 +7,7 @@ public class Bomb : Weapon
     [SerializeField] private float timeToExplode;
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private float explosionRadius;
-    [SerializeField] private bool isChild;
+    //[SerializeField] private bool isChild;
     private MeshRenderer mesh;
     private bool exploded;
     [SerializeField] private bool ticking = false;
@@ -21,13 +21,12 @@ public class Bomb : Weapon
 
     private void Update()
     {
-        if (ticking && !exploded)
+        if (ticking)
         {
             timeToExplode -= Time.deltaTime;
 
             if (timeToExplode <= 0)
             {
-                exploded = true;
                 Explode();
             }
         }
@@ -42,10 +41,12 @@ public class Bomb : Weapon
 
     public void Explode() // create explosion and apply damage to objects in radius
     {
-        if (isChild)
+        if (exploded)
         {
-            transform.parent.root.GetComponent<Bomber>().Die();
+            return;
         }
+        exploded = true;
+        ticking = false;
         explosion.Play();
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
         bool playerFound = false;
@@ -73,7 +74,6 @@ public class Bomb : Weapon
 
     public void RemoveParent()
     {
-        isChild = false;
         transform.SetParent(null);
     }
 }

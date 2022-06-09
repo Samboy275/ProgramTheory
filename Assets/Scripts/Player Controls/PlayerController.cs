@@ -140,4 +140,11 @@ public class PlayerController : IDamagable
     {
 
     }
+
+    void OnDrawGizmosSelected()
+    {
+        // Display the explosion radius when selected
+        Gizmos.color = new Color(1, 1, 0, 0.75F);
+        Gizmos.DrawSphere(transform.position, 3f);
+    }
 }
