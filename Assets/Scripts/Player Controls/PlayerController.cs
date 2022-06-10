@@ -68,12 +68,32 @@ public class PlayerController : IDamagable
                 velocity = maxSpeed;
             }
         }
-        else
+        else if (Input.GetKey(KeyCode.S))
+        {
+            if (velocity > -maxSpeed)
+            {
+                velocity -= acceleration * Time.deltaTime;
+            }
+            else
+            {
+                velocity = -maxSpeed;
+            }
+        }
+        else 
         {
             velocity = 0;
         }
         
-        float speedMapping = Mathf.Clamp01(velocity);
+        if (velocity > 0)
+        {
+            anim.SetBool("IsReverse", false);
+        }
+        else
+        {
+            Debug.Log("moving backward");
+            anim.SetBool("IsReverse", true);
+        }
+        float speedMapping = Mathf.Clamp01(velocity >= 0 ? velocity : -velocity);
         anim.SetFloat("Speed", speedMapping, 0.1f, Time.deltaTime);
         transform.position += transform.forward * velocity * Time.deltaTime;
     }

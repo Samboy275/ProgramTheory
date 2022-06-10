@@ -46,9 +46,8 @@ public class Bomber : Enemy
     // POLYMORPHISM
     protected override void Attack()
     {
-        bomb.Explode();
         anim.SetBool("Bombing", true);
-        TakeDamage(hp);
+        bomb.Explode();
     }
 
     // POLYMORPHISM
