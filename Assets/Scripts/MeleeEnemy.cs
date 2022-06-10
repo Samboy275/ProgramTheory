@@ -30,7 +30,6 @@ public class MeleeEnemy : Enemy
     {
         if (other.transform.root.tag == "Player" && anim.GetCurrentAnimatorStateInfo(0).IsName("Armature|Attack"))
         {
-            Debug.Log("you got hit");
             player.GetComponent<PlayerController>().TakeDamage(dmgAmount);
         }
     }

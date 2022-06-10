@@ -17,7 +17,6 @@ public class PickUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("colliding with " + this.tag);
         Transform player = other.transform.root;
         if (player.tag == "Player")
         {

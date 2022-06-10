@@ -54,7 +54,7 @@ public class Bomber : Enemy
     // POLYMORPHISM
     public override void TakeDamage(int amount)
     {
-        base.TakeDamage();
+        base.TakeDamage(amount);
         if (isDead)
         {
             if (!isTicking)

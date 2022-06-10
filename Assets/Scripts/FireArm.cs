@@ -34,7 +34,6 @@ public class FireArm : Weapon
         
         if (Time.time >= nextBulletTime)
         {
-            Debug.Log("shooting");  
             nextBulletTime = Time.time  + 1f / fireRate;
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

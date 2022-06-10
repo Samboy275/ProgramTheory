@@ -101,7 +101,6 @@ public class Enemy : IDamagable
     {
         if (!isDead)
         {
-            Debug.Log("checked");
             CursorManager.instance.SetCursor();
         }
     }

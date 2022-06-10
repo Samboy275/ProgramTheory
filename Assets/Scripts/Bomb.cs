@@ -35,14 +35,12 @@ public class Bomb : Weapon
 
     public void StartTimer()
     {
-        Debug.Log("This has been called for " + gameObject.name);
         ticking = true;
         sparks.Play();
-        Debug.Log(ticking);
     }
 
     public void Explode() // create explosion and apply damage to objects in radius
-    {
+    {   
         if (exploded)
         {
             return;
@@ -59,7 +57,6 @@ public class Bomb : Weapon
                 if(!playerFound)
                 {
                     playerFound = true;
-                    Debug.Log(chars.transform.root.tag);
                     chars.transform.root.GetComponent<IDamagable>().TakeDamage(dmgAmount);
                 }
             }
@@ -69,7 +66,7 @@ public class Bomb : Weapon
             }
         }
         mesh.enabled = false;
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 2f);
     }
 
 
