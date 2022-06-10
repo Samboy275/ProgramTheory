@@ -1379,6 +1379,10 @@ PrefabInstance:
       propertyPath: isChild
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2593316223598300838, guid: e69a94d1ea356334696ca3653220948e, type: 3}
+      propertyPath: dmgAmount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2593316223598300839, guid: e69a94d1ea356334696ca3653220948e, type: 3}
       propertyPath: m_Size.x
       value: 2

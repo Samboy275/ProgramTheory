@@ -114,7 +114,8 @@ public class PlayerController : IDamagable
         if (isDead)
         {
             anim.SetLayerWeight(1, 0);
-            anim.SetBool("IsDead", true);   
+            anim.SetBool("IsDead", true);
+            GameManager._Instance.GameOver();   
         }
     }
 

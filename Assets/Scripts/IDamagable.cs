@@ -13,8 +13,9 @@ public abstract class IDamagable : MonoBehaviour
     } 
 
 
-    public virtual void TakeDamage(int amount = 1)
+    public virtual void TakeDamage(int amount)
     {
+        Debug.Log(amount + " " + hp);
         hp -= amount;
         healthBar.SetHealth(hp);
         if (hp <= 0)

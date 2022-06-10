@@ -31,7 +31,7 @@ public class TitleScreen : MonoBehaviour
         }
 
         // TODO : add a way to save the players name
-
+        MainManager._Instance.SetPlayerName(name);
         SceneManager.LoadScene(1);
     }
 

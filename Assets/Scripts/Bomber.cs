@@ -51,6 +51,7 @@ public class Bomber : Enemy
         TakeDamage(hp);
     }
 
+    // POLYMORPHISM
     public override void TakeDamage(int amount)
     {
         base.TakeDamage();
@@ -66,10 +67,4 @@ public class Bomber : Enemy
             }
         }
     }
-
-    private void OnDestroy()
-    {
-
-    }
-
 }

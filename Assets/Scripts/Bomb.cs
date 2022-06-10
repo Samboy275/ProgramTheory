@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Bomb : Weapon
 {
     [SerializeField] private float timeToExplode;
     [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private ParticleSystem sparks;
     [SerializeField] private float explosionRadius;
-    //[SerializeField] private bool isChild;
     [SerializeField] private MeshRenderer mesh;
     protected bool exploded;
     private bool ticking = false;
-    
+    [SerializeField] private TextMeshProUGUI timerText;
+
+    [SerializeField] 
 
     protected virtual void Start()
     {
@@ -23,7 +25,7 @@ public class Bomb : Weapon
         if (ticking)
         {
             timeToExplode -= Time.deltaTime;
-
+            timerText.text = Mathf.RoundToInt(timeToExplode).ToString();
             if (timeToExplode <= 0)
             {
                 Explode();
@@ -35,6 +37,7 @@ public class Bomb : Weapon
     {
         Debug.Log("This has been called for " + gameObject.name);
         ticking = true;
+        sparks.Play();
         Debug.Log(ticking);
     }
 

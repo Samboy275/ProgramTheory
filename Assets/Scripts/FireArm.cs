@@ -16,6 +16,13 @@ public class FireArm : Weapon
 
     [SerializeField] Transform wasitRotation;
 
+    public enum GunType {
+        automatic,
+        manual
+    }
+
+
+    public GunType gunType;
 
     private void Update()
     {

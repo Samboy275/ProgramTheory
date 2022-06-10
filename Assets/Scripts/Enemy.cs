@@ -92,7 +92,7 @@ public class Enemy : IDamagable
         if (isDead)
         {
             anim.SetBool("IsDead", isDead);
-            //Destroy(gameObject, 10);
+            Destroy(gameObject, 5f);
         }
     }
 
