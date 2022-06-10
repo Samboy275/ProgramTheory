@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class Bomb : Weapon
 {
-    [SerializeField] private float timeToExplode;
+    [SerializeField] protected float timeToExplode;
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private ParticleSystem sparks;
     [SerializeField] private float explosionRadius;
@@ -24,16 +24,21 @@ public class Bomb : Weapon
     {
         if (ticking)
         {
-            timeToExplode -= Time.deltaTime;
+            TimerTicking();
             timerText.text = Mathf.RoundToInt(timeToExplode).ToString();
+            
+        }
+    }
+
+    protected void TimerTicking()
+    {
+        timeToExplode -= Time.deltaTime;
             if (timeToExplode <= 0)
             {
                 Explode();
             }
-        }
     }
-
-    public void StartTimer()
+    public virtual void StartTimer()
     {
         ticking = true;
         sparks.Play();
