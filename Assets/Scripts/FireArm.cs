@@ -22,7 +22,10 @@ public class FireArm : Weapon
     }
 
 
-    public GunType gunType;
+    public GunType gunType {
+        get; 
+        private set;
+    }
 
     private void Update()
     {
