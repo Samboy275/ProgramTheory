@@ -15,12 +15,10 @@ public abstract class IDamagable : MonoBehaviour
 
     public virtual void TakeDamage(int amount)
     {
-        Debug.Log(amount + " " + hp);
         hp -= amount;
         healthBar.SetHealth(hp);
         if (hp <= 0)
         {
-            Debug.Log(gameObject.name + " is dead");
             isDead = true;
         }
     }
