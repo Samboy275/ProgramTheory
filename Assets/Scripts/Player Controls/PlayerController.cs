@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerController : IDamagable
 {
     // game objects
-    [SerializeField] private GameObject fireBall;
     [SerializeField] private Camera MainCam;
-    [SerializeField] private TrailRenderer bulletTrail;
     // control variables
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float acceleration = 0.6f;
@@ -90,7 +88,6 @@ public class PlayerController : IDamagable
         }
         else
         {
-            Debug.Log("moving backward");
             anim.SetBool("IsReverse", true);
         }
         float speedMapping = Mathf.Clamp01(velocity >= 0 ? velocity : -velocity);

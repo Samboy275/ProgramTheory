@@ -11,7 +11,6 @@ public class Bomber : Enemy
     // control variables
     [SerializeField] private float bombTime;
     [SerializeField] private float startBombRange;
-    [SerializeField] private float explosionRadius;
     private bool isTicking;
 
     protected override void Start()
