@@ -694,7 +694,7 @@ MonoBehaviour:
   attackRange: 0.4
   acceleration: 1
   maxSpeed: 5
-  dmgAmount: 2
+  baseDmg: 1
 --- !u!1 &2925012907044025220
 GameObject:
   m_ObjectHideFlags: 0

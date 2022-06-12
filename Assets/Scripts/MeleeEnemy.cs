@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
-    [SerializeField] private int dmgAmount;
     protected override void Start()
     {
         base.Start();
@@ -16,7 +15,6 @@ public class MeleeEnemy : Enemy
     }
     protected override void Attack()
     {
-        anim.SetTrigger("Attack");
         base.Attack();
     }
 
@@ -30,7 +28,7 @@ public class MeleeEnemy : Enemy
     {
         if (other.transform.root.tag == "Player" && anim.GetCurrentAnimatorStateInfo(0).IsName("Armature|Attack"))
         {
-            player.GetComponent<PlayerController>().TakeDamage(dmgAmount);
+            player.GetComponent<PlayerController>().TakeDamage(baseDmg);
         }
     }
 }

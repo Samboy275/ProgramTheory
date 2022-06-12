@@ -16,6 +16,7 @@ public class Enemy : IDamagable
     private float velocity;
     [SerializeField] private float acceleration;
     [SerializeField] private float maxSpeed;
+    [SerializeField] protected int baseDmg;
 
     protected override void Start()
     {
@@ -28,6 +29,8 @@ public class Enemy : IDamagable
         if (!isDead)
         {
             FollowPlayer();
+            float speedMapping = Mathf.Clamp01(velocity);
+            anim.SetFloat("Speed", speedMapping);
         }
     }
 
@@ -35,6 +38,7 @@ public class Enemy : IDamagable
     // ABSTRACTION
     protected virtual void FollowPlayer()
     {
+        // ABSTRACTION
         Vector3 direction = GetPlayerDirection();
         transform.LookAt(direction);
         if (!PlayerInRange())
@@ -48,8 +52,6 @@ public class Enemy : IDamagable
             Attack();
             velocity = 0;
         }
-        float speedMapping = Mathf.Clamp01(velocity);
-        anim.SetFloat("Speed", speedMapping);
     }
 
     // ABSTRACTION
@@ -75,7 +77,7 @@ public class Enemy : IDamagable
     }
     protected virtual void Attack()
     {
-
+        anim.SetTrigger("Attack");
     }
 
     // ABSTRACTION
@@ -95,7 +97,10 @@ public class Enemy : IDamagable
             Destroy(gameObject, 5f);
         }
     }
-
+    protected void ResetSpeed()
+    {
+        velocity = 0;
+    }
 
     void OnMouseEnter()
     {
