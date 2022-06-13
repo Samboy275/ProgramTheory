@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private float survivalTime;
     private bool startCounting;
-
+    public bool isBossFight{ get; private set; }
     private void Awake()
     {
         if (_Instance != null)
@@ -54,6 +54,16 @@ public class GameManager : MonoBehaviour
         SpawnManager.Instance.StopSpawning();
 
         // TODO : add a game over screen
+    }
+
+    public void StartBossFight()
+    {
+        isBossFight = true;
+    }
+
+    public void EndBossFight()
+    {
+        isBossFight = false;
     }
 
 }

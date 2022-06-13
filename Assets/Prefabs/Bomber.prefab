@@ -972,7 +972,7 @@ GameObject:
   - component: {fileID: 6691900120683994602}
   m_Layer: 7
   m_Name: Bomber
-  m_TagString: Bomber
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1048,6 +1048,7 @@ MonoBehaviour:
   attackRange: 1
   acceleration: 1
   maxSpeed: 5
+  baseDmg: 0
   bombTime: 3
   startBombRange: 2
 --- !u!1 &7277368153967716148

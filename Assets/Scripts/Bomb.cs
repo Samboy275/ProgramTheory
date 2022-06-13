@@ -54,20 +54,14 @@ public class Bomb : Weapon
         ticking = false;
         explosion.Play();
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
-        bool playerFound = false;
         foreach (Collider chars in colliders)
         {
-            if (chars.transform.root.tag == "Player")
+            if (chars.transform.root.tag == "Player" || chars.transform.root.tag == "Enemy")
             {
-                if(!playerFound)
+                if (!chars.transform.root.GetComponent<IDamagable>().Dead())
                 {
-                    playerFound = true;
                     chars.transform.root.GetComponent<IDamagable>().TakeDamage(dmgAmount);
                 }
-            }
-            else if (chars.transform.root.tag == "Enemy" || chars.transform.root.tag == "Bomber")
-            {
-                chars.transform.root.GetComponent<IDamagable>().TakeDamage(dmgAmount);
             }
         }
         mesh.enabled = false;
@@ -80,4 +74,6 @@ public class Bomb : Weapon
     {
         transform.SetParent(null);
     }
+
+
 }

@@ -41,4 +41,5 @@ public class ProjectileEnemy : Enemy
         }
         base.TakeDamage(amount);
     }
+
 }

@@ -94,7 +94,9 @@ public class Enemy : IDamagable
         if (isDead)
         {
             anim.SetBool("IsDead", isDead);
-            Destroy(gameObject, 5f);
+            Debug.Log(gameObject.name + " is dead");
+            SpawnManager.Instance.CheckEnemiesRemaining();
+            Destroy(gameObject, 3f);
         }
     }
     protected void ResetSpeed()
@@ -114,5 +116,4 @@ public class Enemy : IDamagable
     {
         CursorManager.instance.SetDefaultCursor();
     }
-
 }

@@ -89,6 +89,7 @@ public class Boss : Enemy
         if (other.CompareTag("Player"))
         {
             player.GetComponent<PlayerController>().TakeDamage(baseDmg);
+            attackBox.enabled = false;
         }
         
     }
@@ -108,6 +109,15 @@ public class Boss : Enemy
         {
             numofAttacks = 0;
             currentAttack = AttackTypes.fireballs;
+        }
+    }
+
+    public override void TakeDamage(int amount = 1)
+    {
+        base.TakeDamage(amount);
+        if (isDead)
+        {
+            GameManager._Instance.EndBossFight();
         }
     }
 }

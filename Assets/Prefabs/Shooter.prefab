@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 3839934920620908080}
   m_Layer: 7
   m_Name: Shooter
-  m_TagString: Bomber
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -759,6 +759,7 @@ MonoBehaviour:
   attackRange: 5
   acceleration: 0.6
   maxSpeed: 3
+  baseDmg: 0
   projectile: {fileID: 7732406311140747282, guid: 3833b60bc57155c4aae8e6039699f0ff, type: 3}
   firePosition: {fileID: 1259876747790626807}
   fireRate: 1

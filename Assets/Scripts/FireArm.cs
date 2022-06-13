@@ -46,7 +46,10 @@ public class FireArm : Weapon
                     StartCoroutine(SpawnTrail(trail, hit));
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                 {
-                    hit.transform.GetComponent<Enemy>().TakeDamage(dmgAmount);
+                    if (!hit.transform.root.GetComponent<IDamagable>().Dead())
+                    {
+                        hit.transform.GetComponent<Enemy>().TakeDamage(dmgAmount);
+                    }
                 }
             }
         }

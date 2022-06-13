@@ -9,14 +9,14 @@ public class SpawnManager : MonoBehaviour
     // gameobjects
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject[] enemies;
-
+    [SerializeField] private GameObject boss;
 
     // control variables
-    [SerializeField] private float spawnRate;
-    [SerializeField] private int difficulty;
-
+    public int waveNumber {get; private set;}
+    private int aliveEnemies;
     private void Awake()
     {
+        aliveEnemies = 1;
         if (Instance != null)
         {
             Destroy(gameObject);
@@ -24,39 +24,69 @@ public class SpawnManager : MonoBehaviour
         }
         
         Instance = this;
-        difficulty = 1;
+        waveNumber = 1;
     }
 
     // ABSTRACTION
-    private void SpawnEnemies()
+    public void SpawnEnemies(int enemiesToSpawn)
     {
-        for (int i = 0; i < difficulty; i++)
+        if (enemiesToSpawn <= 0)
+            return;
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
             int enemyIndex = Random.Range(0, enemies.Length);
             int pointIndex = Random.Range(0, spawnPoints.Length);
 
             Instantiate(enemies[enemyIndex], spawnPoints[pointIndex].position, enemies[enemyIndex].transform.rotation);
         }
+        aliveEnemies = enemiesToSpawn;
     }
 
+     // POLYMORPHISM
+    // public void ChangeDifficulty(int newDifficulty)
+    // {
+    //     waveNumber = newDifficulty;
+    // }
+
+    // public void ChangeDifficulty(int newDifficulty, float newSpawnRate)
+    // {
+    //     waveNumber = newDifficulty;
+    //     spawnRate = newSpawnRate;
+    // }
 
     public void StartSpawning()
     {
-        InvokeRepeating("SpawnEnemies", 0, spawnRate);
-    }
-     // POLYMORPHISM
-    public void ChangeDifficulty(int newDifficulty)
-    {
-        difficulty = newDifficulty;
-    }
-
-    public void ChangeDifficulty(int newDifficulty, float newSpawnRate)
-    {
-        difficulty = newDifficulty;
-        spawnRate = newSpawnRate;
+        SpawnEnemies(waveNumber++);
     }
     public void StopSpawning()
     {
         CancelInvoke();
+    }
+
+    private void SpawnBoss()
+    {
+        aliveEnemies++;
+        waveNumber++;
+        Instantiate(boss, spawnPoints[0].position, boss.transform.rotation);
+    }
+    public void CheckEnemiesRemaining()
+    {
+        aliveEnemies--;
+        Debug.Log(aliveEnemies);
+        if (aliveEnemies <= 0)
+        {
+            if (waveNumber % 5 == 0)
+            {
+                GameManager._Instance.StartBossFight();
+                SpawnBoss();
+                // mobs with boss logic
+                int mobs = (waveNumber / 5) - 1;
+                SpawnEnemies(mobs);
+            }
+            else
+            {
+                SpawnEnemies(waveNumber++);
+            }
+        }
     }
 }

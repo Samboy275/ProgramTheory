@@ -12,7 +12,10 @@ public abstract class IDamagable : MonoBehaviour
         isDead = false;
     } 
 
-
+    public bool Dead()
+    {
+        return isDead;
+    }
     public virtual void TakeDamage(int amount)
     {
         hp -= amount;
@@ -20,6 +23,7 @@ public abstract class IDamagable : MonoBehaviour
         if (hp <= 0)
         {
             isDead = true;
+            //GetComponentInChildren<BoxCollider>().enabled = false;
         }
     }
 }
