@@ -72,9 +72,9 @@ public class SpawnManager : MonoBehaviour
     public void CheckEnemiesRemaining()
     {
         aliveEnemies--;
-        Debug.Log(aliveEnemies);
         if (aliveEnemies <= 0)
         {
+            GameManager._Instance.ResetCounter();
             if (waveNumber % 5 == 0)
             {
                 GameManager._Instance.StartBossFight();
@@ -87,6 +87,12 @@ public class SpawnManager : MonoBehaviour
             {
                 SpawnEnemies(waveNumber++);
             }
+            GameManager._Instance.StartCounter();
         }
+    }
+
+    public int GetWaveNumer()
+    {
+        return waveNumber - 1;
     }
 }

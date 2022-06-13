@@ -91,7 +91,6 @@ public class Boss : Enemy
             player.GetComponent<PlayerController>().TakeDamage(baseDmg);
             attackBox.enabled = false;
         }
-        
     }
 
     private void OnTriggerExit(Collider other)
@@ -112,6 +111,7 @@ public class Boss : Enemy
         }
     }
 
+    // POLYMORPHISM
     public override void TakeDamage(int amount = 1)
     {
         base.TakeDamage(amount);

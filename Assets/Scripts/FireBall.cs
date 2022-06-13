@@ -43,7 +43,6 @@ public class FireBall : Weapon
             Debug.Log("Hitting Player");
             other.gameObject.GetComponent<IDamagable>().TakeDamage(dmgAmount);
             Destroy(gameObject);
-        }
-        
+        }  
     }   
 }

@@ -14,6 +14,7 @@ public class TitleScreen : MonoBehaviour
 
     [SerializeField] private TMP_InputField PlayerName;
 
+    [SerializeField] private TextMeshProUGUI highScoreText;
 
 
     private void Awake()
@@ -22,6 +23,14 @@ public class TitleScreen : MonoBehaviour
         ExitBtn.onClick.AddListener(ExitGame);
     }
 
+    private void Start()
+    {
+        int highScore = MainManager._Instance.LoadData();
+        if (highScore > 0)
+        {
+            highScoreText.text = "Highest Score is " +  highScore + " by " + MainManager._Instance.GetName();
+        }
+    }
     private void StartGame()
     {
         if (string.IsNullOrWhiteSpace(PlayerName.text))
@@ -31,7 +40,8 @@ public class TitleScreen : MonoBehaviour
         }
 
         // TODO : add a way to save the players name
-        MainManager._Instance.SetPlayerName(name);
+        Debug.Log(PlayerName.text);
+        MainManager._Instance.SetPlayerName(PlayerName.text);
         SceneManager.LoadScene(1);
     }
 

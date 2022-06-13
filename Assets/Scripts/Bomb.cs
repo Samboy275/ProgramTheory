@@ -68,12 +68,8 @@ public class Bomb : Weapon
         Destroy(gameObject, 0.5f);
     }
 
-
-
     public void RemoveParent()
     {
         transform.SetParent(null);
     }
-
-
 }

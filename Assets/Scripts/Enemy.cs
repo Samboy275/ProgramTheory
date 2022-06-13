@@ -94,7 +94,6 @@ public class Enemy : IDamagable
         if (isDead)
         {
             anim.SetBool("IsDead", isDead);
-            Debug.Log(gameObject.name + " is dead");
             SpawnManager.Instance.CheckEnemiesRemaining();
             Destroy(gameObject, 3f);
         }

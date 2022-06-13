@@ -23,7 +23,6 @@ public abstract class IDamagable : MonoBehaviour
         if (hp <= 0)
         {
             isDead = true;
-            //GetComponentInChildren<BoxCollider>().enabled = false;
         }
     }
 }

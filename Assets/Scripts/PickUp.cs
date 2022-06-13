@@ -43,8 +43,6 @@ public class PickUp : MonoBehaviour
         SetBombPosition(transform.position);
     }
 
-
-
     public void SetBombPosition(Vector3 position)
     {
         transform.position =  new Vector3(position.x, 0.7f, position.z);

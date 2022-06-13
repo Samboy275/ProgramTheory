@@ -132,7 +132,7 @@ public class PlayerController : IDamagable
         {
             anim.SetLayerWeight(1, 0);
             anim.SetBool("IsDead", true);
-            GameManager._Instance.GameOver();   
+            GameManager._Instance.PlayerDied();   
         }
     }
 
@@ -150,7 +150,6 @@ public class PlayerController : IDamagable
         {
             return true;
         }
-        
         return false;
     }
 

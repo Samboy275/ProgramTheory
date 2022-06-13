@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     // singleton
@@ -11,11 +10,17 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
+
+    // game objects
+    [SerializeField]private TextMeshProUGUI scoreText; 
+
     // control Variables;
 
     private float survivalTime;
     private bool startCounting;
     public bool isBossFight{ get; private set; }
+    private int score;
+
     private void Awake()
     {
         if (_Instance != null)
@@ -49,13 +54,16 @@ public class GameManager : MonoBehaviour
         SpawnManager.Instance.StartSpawning();
     }
 
-    public void GameOver()
+    public void PlayerDied()
     {
         SpawnManager.Instance.StopSpawning();
-
-        // TODO : add a game over screen
+        GameOverScreen.Instance.ActivateGameOverScreen(score, SpawnManager.Instance.GetWaveNumer());
+        GameObject[] remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in remainingEnemies)
+        {
+            Destroy(enemy);
+        }
     }
-
     public void StartBossFight()
     {
         isBossFight = true;
@@ -64,6 +72,22 @@ public class GameManager : MonoBehaviour
     public void EndBossFight()
     {
         isBossFight = false;
+    }
+
+
+    public void ResetCounter()
+    {
+        startCounting = false;
+        int timePassed = Mathf.RoundToInt(survivalTime);
+        score += (60 - timePassed > 0)? 60 - timePassed : 0; 
+        survivalTime = 0;
+        scoreText.text = "Score : " + score;
+    }
+
+    public void StartCounter()
+    {
+        survivalTime = 0;
+        startCounting = true;
     }
 
 }
