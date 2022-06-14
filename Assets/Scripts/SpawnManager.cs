@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject[] enemies;
     [SerializeField] private GameObject boss;
-
+    [SerializeField] private GameObject hpPickUp;
     // control variables
     public int waveNumber {get; private set;}
     private int aliveEnemies;
@@ -94,5 +94,19 @@ public class SpawnManager : MonoBehaviour
     public int GetWaveNumer()
     {
         return waveNumber - 1;
+    }
+
+    public void SpawnHpPickUp(Vector3 position)
+    {
+        int heartFallChance = Random.Range(1,4);
+
+        if (heartFallChance % 3 == 0)
+            Instantiate(hpPickUp, position, hpPickUp.transform.rotation);
+    }
+
+    public void SpawnHpPickUp(Vector3 position, int hp = 10)
+    {
+        GameObject hpRef = Instantiate(hpPickUp, position, hpPickUp.transform.rotation);
+        hpRef.GetComponent<HealthPickup>().SetHpAmount(hp);
     }
 }

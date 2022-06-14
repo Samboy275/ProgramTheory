@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,8 +39,7 @@ public class FireArm : Weapon
         {
             nextBulletTime = Time.time  + 1f / fireRate;
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 50f, enemyMask))
+            if (Physics.Raycast(firePoint.position, firePoint.forward, out hit, 50f, enemyMask))
             {
                     TrailRenderer trail = Instantiate(bulletTrail, firePoint.position, firePoint.rotation);
                     StartCoroutine(SpawnTrail(trail, hit));

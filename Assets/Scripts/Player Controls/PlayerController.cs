@@ -41,7 +41,7 @@ public class PlayerController : IDamagable
             }
             if (Input.GetKeyDown(KeyCode.Space) && bombs.Count > 0)
             {
-                bombs[0].GetComponent<PickUp>().SetBombPosition(transform.position);
+                bombs[0].GetComponent<BombPickup>().SetBombPosition(transform.position);
                 bombs[0].SetActive(true);
                 bombs[0].GetComponent<Bomb>().StartTimer();
                 bombs.RemoveAt(0);

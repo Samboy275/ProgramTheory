@@ -3,12 +3,14 @@ using UnityEngine;
 public abstract class IDamagable : MonoBehaviour
 {
     [SerializeField] protected int hp;
+    [SerializeField] private int maxHp;
     [SerializeField] private HealthBar healthBar;
     protected bool isDead;
 
     protected virtual void Start()
     {
-        healthBar.SetMaxHealth(hp);
+        hp = maxHp;
+        healthBar.SetMaxHealth(maxHp);
         isDead = false;
     } 
 
@@ -24,5 +26,16 @@ public abstract class IDamagable : MonoBehaviour
         {
             isDead = true;
         }
+    }
+
+    public void IncreaseHP(int amount)
+    {
+        hp = (hp + amount >= maxHp)? maxHp : hp + amount;
+        healthBar.SetHealth(hp);
+    }
+
+    public int GetMaxHp()
+    {
+        return maxHp;
     }
 }

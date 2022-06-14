@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3764124165976035877}
   - component: {fileID: 2593316223598300839}
   - component: {fileID: 2593316223598300838}
-  - component: {fileID: 2291538995285621985}
+  - component: {fileID: -1851591903885205385}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
@@ -120,16 +120,16 @@ MonoBehaviour:
   explosionRadius: 2
   mesh: {fileID: 3764124165976035877}
   timerText: {fileID: 1609094989712640229}
---- !u!114 &2291538995285621985
+--- !u!114 &-1851591903885205385
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3403637802965447664}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3dd7095bf6840f498684fe919a7e9db, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d501779d2c88474dafdc8a827365192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7616218171197473490

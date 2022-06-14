@@ -95,7 +95,16 @@ public class Enemy : IDamagable
         {
             anim.SetBool("IsDead", isDead);
             SpawnManager.Instance.CheckEnemiesRemaining();
-            Destroy(gameObject, 3f);
+            if (GetComponent<Bomber>() == null && GetComponent<Boss>() == null)
+            {
+                SpawnManager.Instance.SpawnHpPickUp(transform.position);
+            }
+            else if (GetComponent<Boss>() != null)
+            {
+                int playerMxHp = player.GetComponent<PlayerController>().GetMaxHp();
+                SpawnManager.Instance.SpawnHpPickUp(transform.position, playerMxHp);
+            }
+            Destroy(gameObject, 4f);
         }
     }
     protected void ResetSpeed()

@@ -1042,6 +1042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  maxHp: 3
   healthBar: {fileID: 903862728829888301}
   player: {fileID: 0}
   anim: {fileID: 4380541972994688210}
