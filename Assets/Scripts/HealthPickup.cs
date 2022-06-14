@@ -6,7 +6,7 @@ public class HealthPickup : PickUp
 {
     [SerializeField] private int hpAmount = 5;
 
-
+    // POLYMORPHISM
     protected override void Update()
     {
         transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);

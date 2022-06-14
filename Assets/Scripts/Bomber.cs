@@ -19,7 +19,8 @@ public class Bomber : Enemy
         bomb = GetComponentInChildren<Bomb>();
         base.Start();
     }
-
+    
+    // POLYMORPHISM
     protected override void Update()
     {
         if (!isDead)

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    // singleton 
+    // singleton
+    // ENCAPSULATION 
     public static SpawnManager Instance { get; private set; }
     // gameobjects
     [SerializeField] private Transform[] spawnPoints;
@@ -95,7 +96,6 @@ public class SpawnManager : MonoBehaviour
     {
         return waveNumber - 1;
     }
-
     public void SpawnHpPickUp(Vector3 position)
     {
         int heartFallChance = Random.Range(1,4);
@@ -104,6 +104,7 @@ public class SpawnManager : MonoBehaviour
             Instantiate(hpPickUp, position, hpPickUp.transform.rotation);
     }
 
+    // POLYMORPHISM
     public void SpawnHpPickUp(Vector3 position, int hp = 10)
     {
         GameObject hpRef = Instantiate(hpPickUp, position, hpPickUp.transform.rotation);

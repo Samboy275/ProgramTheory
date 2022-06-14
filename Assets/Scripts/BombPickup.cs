@@ -8,6 +8,8 @@ public class BombPickup : PickUp
     {
         transform.position =  new Vector3(position.x, 0.7f, position.z);
     }
+
+    // POLYMORPHISM
     public override void Drop()
     {
         transform.up = Vector3.up;
