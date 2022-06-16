@@ -35,3 +35,10 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+WebGL\ Builds/*
+connectwebgl.zip
+webgl_sharing
+
+
+# tasks txt
+Assets/tasks.txt

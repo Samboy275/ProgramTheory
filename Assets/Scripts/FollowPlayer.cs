@@ -9,10 +9,11 @@ public class FollowPlayer : MonoBehaviour
 
     [SerializeField] float rotationSpeed;
     private Vector3 offset;
-    
+    private Vector3 originalPos;
     // Start is called before the first frame update
     void Start()
     {
+        originalPos = transform.position;
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         offset = transform.position - playerPos.position;
     }

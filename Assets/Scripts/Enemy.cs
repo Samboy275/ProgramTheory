@@ -95,7 +95,7 @@ public class Enemy : IDamagable
         if (isDead)
         {
             anim.SetBool("IsDead", isDead);
-            SpawnManager.Instance.CheckEnemiesRemaining();
+            GameManager._Instance.CheckEnemiesRemaining();
             if (GetComponent<Bomber>() == null && GetComponent<Boss>() == null)
             {
                 SpawnManager.Instance.SpawnHpPickUp(transform.position);

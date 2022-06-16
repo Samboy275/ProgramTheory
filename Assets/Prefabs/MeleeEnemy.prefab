@@ -692,7 +692,7 @@ MonoBehaviour:
   healthBar: {fileID: 5249438529461231157}
   player: {fileID: 0}
   anim: {fileID: 8689736628666531274}
-  attackRange: 0.4
+  attackRange: 0.5
   acceleration: 1
   maxSpeed: 4
   baseDmg: 1

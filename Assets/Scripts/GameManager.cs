@@ -12,15 +12,17 @@ public class GameManager : MonoBehaviour
 
 
     // game objects
-    [SerializeField]private TextMeshProUGUI scoreText; 
-
+    [SerializeField] private GameObject nextAreaDoor;
+    [SerializeField] private TextMeshProUGUI scoreText; 
+    [SerializeField] private TextMeshProUGUI advanceText;
     // control Variables;
 
     private float survivalTime;
     private bool startCounting;
     public bool isBossFight{ get; private set; }
     private int score;
-
+    private bool isWaveKilled;
+    private bool isGameOver;
     private void Awake()
     {
         if (_Instance != null)
@@ -35,14 +37,24 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        isGameOver = false;
+        advanceText.gameObject.SetActive(false);
         StartGame();
     }
 
     private void Update()
     {
-        if (startCounting)
+        if (isGameOver == false)
         {
-            survivalTime += Time.deltaTime;
+            if (startCounting)
+            {
+                survivalTime += Time.deltaTime;
+            }
+            if (isWaveKilled && Input.GetKeyDown(KeyCode.E))
+            {
+                advanceText.gameObject.SetActive(false);
+                SpawnManager.Instance.StartSpawning();
+            }
         }
     }
 
@@ -56,6 +68,8 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied()
     {
+        isGameOver = true;
+        advanceText.gameObject.SetActive(false);
         SpawnManager.Instance.StopSpawning();
         GameOverScreen.Instance.ActivateGameOverScreen(score, SpawnManager.Instance.GetWaveNumer());
         GameObject[] remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
@@ -74,7 +88,16 @@ public class GameManager : MonoBehaviour
         isBossFight = false;
     }
 
-
+    public void CheckEnemiesRemaining()
+    {
+        if (SpawnManager.Instance.AreAllEnemiesDead())
+        {
+                
+            advanceText.gameObject.SetActive(true);
+            isWaveKilled = true;
+            ResetCounter();
+        }
+    }
     public void ResetCounter()
     {
         startCounting = false;

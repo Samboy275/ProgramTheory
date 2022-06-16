@@ -33,12 +33,16 @@ public class SpawnManager : MonoBehaviour
     {
         if (enemiesToSpawn <= 0)
             return;
+        
+        int spawnIndex = Random.Range(0, spawnPoints.Length);
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             int enemyIndex = Random.Range(0, enemies.Length);
-            int pointIndex = Random.Range(0, spawnPoints.Length);
-
-            Instantiate(enemies[enemyIndex], spawnPoints[pointIndex].position, enemies[enemyIndex].transform.rotation);
+            Instantiate(enemies[enemyIndex], spawnPoints[spawnIndex++].position, enemies[enemyIndex].transform.rotation);
+            if (spawnIndex > spawnPoints.Length)
+            {
+                spawnIndex = Random.Range(0, spawnPoints.Length);
+            }
         }
         aliveEnemies = enemiesToSpawn;
     }
@@ -57,39 +61,40 @@ public class SpawnManager : MonoBehaviour
 
     public void StartSpawning()
     {
-        SpawnEnemies(waveNumber++);
+        if (waveNumber % 5 == 0)
+        {
+            GameManager._Instance.StartBossFight();
+            SpawnBoss();
+            // mobs with boss logic
+            int mobs = (waveNumber / 5) - 1;
+            SpawnEnemies(mobs);
+        }
+        else
+        {
+            SpawnEnemies(waveNumber++);
+        }
+        GameManager._Instance.StartCounter();
     }
     public void StopSpawning()
     {
         CancelInvoke();
     }
 
-    private void SpawnBoss()
+    public void SpawnBoss()
     {
         aliveEnemies++;
         waveNumber++;
         Instantiate(boss, spawnPoints[0].position, boss.transform.rotation);
     }
-    public void CheckEnemiesRemaining()
+
+    public bool AreAllEnemiesDead() // when an enemy killed decrease enemies returns true if all enemies are dead
     {
         aliveEnemies--;
-        if (aliveEnemies <= 0)
+        if (aliveEnemies == 0)
         {
-            GameManager._Instance.ResetCounter();
-            if (waveNumber % 5 == 0)
-            {
-                GameManager._Instance.StartBossFight();
-                SpawnBoss();
-                // mobs with boss logic
-                int mobs = (waveNumber / 5) - 1;
-                SpawnEnemies(mobs);
-            }
-            else
-            {
-                SpawnEnemies(waveNumber++);
-            }
-            GameManager._Instance.StartCounter();
+            return true;
         }
+        return false;
     }
 
     public int GetWaveNumer()
