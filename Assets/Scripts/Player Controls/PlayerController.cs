@@ -1,4 +1,4 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ public class PlayerController : IDamagable
     private List<GameObject> bombs;
     [SerializeField] private int bombsLimit;
     private float velocity;
-    private float xLimit = 8.5f;
+    //private float xLimit = 8.5f;
     // components
     private Animator anim;
     [SerializeField] LayerMask groundMask;
@@ -93,10 +93,6 @@ public class PlayerController : IDamagable
         float speedMapping = Mathf.Clamp01(velocity >= 0 ? velocity : -velocity);
         anim.SetFloat("Speed", speedMapping, 0.1f, Time.deltaTime);
         transform.position += transform.forward * velocity * Time.deltaTime;
-        if (transform.position.x >= xLimit)
-        {
-            transform.position = new Vector3(xLimit, transform.position.y, transform.position.z);
-        }
     }
 
     private (bool success, Vector3 position) GetMousePosition()
@@ -155,6 +151,15 @@ public class PlayerController : IDamagable
             return true;
         }
         return false;
+    }
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.transform.tag == "DeathFall")
+        {
+            TakeDamage(hp);
+        }
     }
 
 }

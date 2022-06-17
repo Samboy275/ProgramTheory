@@ -8,6 +8,8 @@ TagManager:
   - Bomber
   - Bomb
   - Projectile
+  - PickUp
+  - DeathFall
   layers:
   - Default
   - TransparentFX

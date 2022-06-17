@@ -16,24 +16,26 @@ public class BombPickup : PickUp
         transform.GetComponent<Bomb>().RemoveParent();
         GetComponent<BoxCollider>().enabled = true;
         SetDropPosition(transform.position);
+        base.Drop();
     }
 
-    private void OnTriggerEnter(Collider other)
+
+// POLYMORPHISM
+    protected override void OnTriggerEnter(Collider other)
     {
         Transform player = other.transform.root;
         if (player.tag == "Player")
         {
             // add item to the inventory
-            if (this.tag == "Bomb")
+            if (!player.GetComponent<PlayerController>().BombsFull())
             {
-                if (!player.GetComponent<PlayerController>().BombsFull())
-                {
-                    player.GetComponent<PlayerController>().PickUpBomb(transform.gameObject);
-                    gameObject.SetActive(false);
-                    GetComponent<BoxCollider>().enabled = false;
-                    this.enabled = false;
-                }
+                player.GetComponent<PlayerController>().PickUpBomb(transform.gameObject);
+                gameObject.SetActive(false);
+                GetComponent<BoxCollider>().enabled = false;
+                this.enabled = false;
+                base.OnTriggerEnter(other);
             }
+            
         }
     } 
 }

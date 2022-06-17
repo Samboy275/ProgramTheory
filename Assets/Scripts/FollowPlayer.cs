@@ -21,10 +21,12 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 targetPos = (playerPos.position + offset)/2;
-        targetPos.x += mousePos.x / 2;
-        targetPos.x = Mathf.Clamp(targetPos.x, targetPos.x - threshold, targetPos.x + threshold);
+        
+    }
+
+
+    public void ResetCamPosition()
+    {
+        transform.position = originalPos;
     }
 }

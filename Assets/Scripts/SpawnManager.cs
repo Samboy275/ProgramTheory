@@ -38,11 +38,11 @@ public class SpawnManager : MonoBehaviour
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             int enemyIndex = Random.Range(0, enemies.Length);
-            Instantiate(enemies[enemyIndex], spawnPoints[spawnIndex++].position, enemies[enemyIndex].transform.rotation);
-            if (spawnIndex > spawnPoints.Length)
+            if (spawnIndex >= spawnPoints.Length)
             {
                 spawnIndex = Random.Range(0, spawnPoints.Length);
             }
+            Instantiate(enemies[enemyIndex], spawnPoints[spawnIndex++].position, enemies[enemyIndex].transform.rotation);
         }
         aliveEnemies = enemiesToSpawn;
     }
@@ -99,7 +99,7 @@ public class SpawnManager : MonoBehaviour
 
     public int GetWaveNumer()
     {
-        return waveNumber - 1;
+        return waveNumber;
     }
     public void SpawnHpPickUp(Vector3 position)
     {

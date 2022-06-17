@@ -12,16 +12,17 @@ public class GameManager : MonoBehaviour
 
 
     // game objects
-    [SerializeField] private GameObject nextAreaDoor;
     [SerializeField] private TextMeshProUGUI scoreText; 
     [SerializeField] private TextMeshProUGUI advanceText;
+    [SerializeField] private GameObject bossRoom;
+    [SerializeField] private GameObject mobsRoom;
     // control Variables;
 
     private float survivalTime;
     private bool startCounting;
     public bool isBossFight{ get; private set; }
     private int score;
-    private bool isWaveKilled;
+    public bool isWaveKilled {get; private set;}
     private bool isGameOver;
     private void Awake()
     {
@@ -30,7 +31,8 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
+        bossRoom.SetActive(false);
+        mobsRoom.SetActive(true);
         _Instance = this;
         startCounting = false;
     }
@@ -50,11 +52,6 @@ public class GameManager : MonoBehaviour
             {
                 survivalTime += Time.deltaTime;
             }
-            if (isWaveKilled && Input.GetKeyDown(KeyCode.E))
-            {
-                advanceText.gameObject.SetActive(false);
-                SpawnManager.Instance.StartSpawning();
-            }
         }
     }
 
@@ -71,7 +68,7 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         advanceText.gameObject.SetActive(false);
         SpawnManager.Instance.StopSpawning();
-        GameOverScreen.Instance.ActivateGameOverScreen(score, SpawnManager.Instance.GetWaveNumer());
+        GameOverScreen.Instance.ActivateGameOverScreen(score, SpawnManager.Instance.GetWaveNumer() - 1);
         GameObject[] remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in remainingEnemies)
         {
@@ -111,6 +108,41 @@ public class GameManager : MonoBehaviour
     {
         survivalTime = 0;
         startCounting = true;
+        isWaveKilled = false;
+    }
+
+
+    public void LoadNextArea()
+    {
+        if (SpawnManager.Instance.GetWaveNumer() % 5 == 0)
+        {
+            bossRoom.SetActive(true);
+            mobsRoom.SetActive(false);
+        }
+        else
+        {
+            bossRoom.SetActive(false);
+            mobsRoom.SetActive(true);
+        }
+
+        // destorying pick ups if the player leaves them
+        GameObject[] pickups = GameObject.FindGameObjectsWithTag("PickUp");
+        foreach (GameObject pickup in pickups)
+        {
+            if (pickup.GetComponent<PickUp>().onGround)
+            {
+                Destroy(pickup);
+            }
+        }
+    }
+
+    public void SpawnNextWave()
+    {
+            if (isWaveKilled)
+            {
+                advanceText.gameObject.SetActive(false);
+                SpawnManager.Instance.StartSpawning();
+            }
     }
 
 }
