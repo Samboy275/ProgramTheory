@@ -97,7 +97,7 @@ public class SpawnManager : MonoBehaviour
         return false;
     }
 
-    public int GetWaveNumer()
+    public int GetWaveNumber()
     {
         return waveNumber;
     }

@@ -12,10 +12,9 @@ public class GameManager : MonoBehaviour
 
 
     // game objects
-    [SerializeField] private TextMeshProUGUI scoreText; 
-    [SerializeField] private TextMeshProUGUI advanceText;
     [SerializeField] private GameObject bossRoom;
     [SerializeField] private GameObject mobsRoom;
+    [SerializeField] private GameObject playerRef;
     // control Variables;
 
     private float survivalTime;
@@ -40,7 +39,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         isGameOver = false;
-        advanceText.gameObject.SetActive(false);
+        InGameUI.Instance.ToggleAdvanceText(false);
         StartGame();
     }
 
@@ -66,9 +65,9 @@ public class GameManager : MonoBehaviour
     public void PlayerDied()
     {
         isGameOver = true;
-        advanceText.gameObject.SetActive(false);
+        InGameUI.Instance.ToggleAdvanceText(false);
         SpawnManager.Instance.StopSpawning();
-        GameOverScreen.Instance.ActivateGameOverScreen(score, SpawnManager.Instance.GetWaveNumer() - 1);
+        GameOverScreen.Instance.ActivateGameOverScreen(score, SpawnManager.Instance.GetWaveNumber() - 1);
         GameObject[] remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (GameObject enemy in remainingEnemies)
         {
@@ -87,26 +86,41 @@ public class GameManager : MonoBehaviour
 
     public void CheckEnemiesRemaining(int points)
     {
-        score += points;
-        UpdatePoints();
+        UpdateScore(points);
         if (SpawnManager.Instance.AreAllEnemiesDead())
-        {
-                
-            advanceText.gameObject.SetActive(true);
+        {  
+            InGameUI.Instance.ToggleAdvanceText(true);
             isWaveKilled = true;
             ResetCounter();
         }
     }
+    
+    public void UpdateScore(int points = 0, bool onlyMoney = false) /// updates score if points = 0 then level ended calculate time to add points
+    {
+        int amount = 0;
+        if (!onlyMoney)
+        {
+            if (points > 0)
+            {
+                score += points;
+                amount += points * 20;
+            }
+            else
+            {
+                int timePassed = Mathf.RoundToInt(survivalTime);
+                score += (60 - timePassed > 0)? 60 - timePassed : 0;
+                amount += score / 10; 
+            }
+        }
+        int money = playerRef.GetComponent<PlayerController>().IncreaseMoney(amount);
+        InGameUI.Instance.UpdateUI(score, money);
+    }
     public void ResetCounter()
     {
         startCounting = false;
-        int timePassed = Mathf.RoundToInt(survivalTime);
-        score += (60 - timePassed > 0)? 60 - timePassed : 0; 
+        UpdateScore();
         survivalTime = 0;
-        UpdatePoints();
     }
-
-    private void UpdatePoints() => scoreText.text = "Points : " + score;
     public void StartCounter()
     {
         survivalTime = 0;
@@ -117,7 +131,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadNextArea()
     {
-        if (SpawnManager.Instance.GetWaveNumer() % 5 == 0)
+        if (SpawnManager.Instance.GetWaveNumber() % 5 == 0)
         {
             bossRoom.SetActive(true);
             mobsRoom.SetActive(false);
@@ -128,7 +142,7 @@ public class GameManager : MonoBehaviour
             mobsRoom.SetActive(true);
         }
 
-        // destorying pick ups if the player leaves them
+        // destroying pick ups if the player leaves them
         GameObject[] pickups = GameObject.FindGameObjectsWithTag("PickUp");
         foreach (GameObject pickup in pickups)
         {
@@ -143,15 +157,9 @@ public class GameManager : MonoBehaviour
     {
             if (isWaveKilled)
             {
-                advanceText.gameObject.SetActive(false);
+                InGameUI.Instance.ToggleAdvanceText(false);
                 SpawnManager.Instance.StartSpawning();
             }
-    }
-
-
-    public int GetScore()
-    {
-        return score;
     }
 
 }

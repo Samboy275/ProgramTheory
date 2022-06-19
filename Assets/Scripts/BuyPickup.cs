@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class BuyPickup : PickUp
 {
-    [SerializeField] private int price;
+    [SerializeField] public int price{get; private set;}
     [SerializeField] private GameObject itemPrefab;
     protected override void Start()
     {
         onGround = true;
+        price = 100;
     }
     protected override void Update()
     {

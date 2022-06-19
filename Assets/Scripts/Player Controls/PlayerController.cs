@@ -15,6 +15,7 @@ public class PlayerController : IDamagable
     [SerializeField] private FireArm currentGun;
     private List<GameObject> bombs;
     [SerializeField] private int bombsLimit;
+    private int money;
     private float velocity;
     //private float xLimit = 8.5f;
     // components
@@ -32,6 +33,7 @@ public class PlayerController : IDamagable
 
     protected override void Start()
     {
+        money = 0;
         base.Start();
     }
 
@@ -211,10 +213,11 @@ public class PlayerController : IDamagable
             else
             {
                 playerText.text = "Press E to buy the automatic rifle";
-                Debug.Log(other.name);
-                if (Input.GetKeyDown(KeyCode.E))
+                int price =  other.GetComponent<BuyPickup>().price;
+                
+                if (Input.GetKeyDown(KeyCode.E) && money >= price)
                 {
-                    Debug.Log("found");
+                    money = money - price;
                     GameObject rifle = other.GetComponent<BuyPickup>().GetItem();
                     rifle.transform.SetParent(RifleHolder);
                     rifle.transform.localPosition = Vector3.zero;
@@ -222,6 +225,7 @@ public class PlayerController : IDamagable
                     rifle.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f);
                     rifle.SetActive(false);
                     guns.Add(rifle.GetComponent<FireArm>());
+                    GameManager._Instance.UpdateScore(0,true);
                 }
             }
         }
@@ -233,5 +237,12 @@ public class PlayerController : IDamagable
         {
             playerText.text = "";
         }
+    }
+
+
+    public int IncreaseMoney(int amount = 0) /// increases money by amount and returns money value
+    {
+        money += amount;
+        return money;
     }
 }

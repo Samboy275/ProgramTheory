@@ -10,6 +10,7 @@ TagManager:
   - Projectile
   - PickUp
   - DeathFall
+  - Item
   layers:
   - Default
   - TransparentFX
