@@ -14,8 +14,6 @@ public class FireArm : Weapon
     [SerializeField] TrailRenderer bulletTrail;
     [SerializeField] LayerMask enemyMask;
 
-    [SerializeField] Transform wasitRotation;
-
     public enum GunType {
         automatic,
         manual
@@ -26,7 +24,6 @@ public class FireArm : Weapon
 
     private void Update()
     {
-        transform.rotation = wasitRotation.rotation;
     }
 
     public virtual void Shoot()

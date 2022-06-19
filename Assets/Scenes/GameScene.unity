@@ -581,6 +581,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249734461}
   m_CullTransparentMesh: 1
+--- !u!4 &269832813 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5890505316689736609, guid: 299614c8fc5e4714e9c033316aa34a68, type: 3}
+  m_PrefabInstance: {fileID: 1020903130505065396}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &290780754
 GameObject:
   m_ObjectHideFlags: 0
@@ -26814,6 +26819,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3478794958906780457, guid: 7d64cd6dc23aa554597663e6e5a0749f, type: 3}
   m_PrefabInstance: {fileID: 188120479726451384}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1919472962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1919472963}
+  m_Layer: 3
+  m_Name: Rifle Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1919472963
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919472962}
+  m_LocalRotation: {x: 0.011431578, y: 0, z: 0, w: -0.9999347}
+  m_LocalPosition: {x: 0.008100012, y: 0.027351275, z: 0.024742484}
+  m_LocalScale: {x: 0.0014999999, y: 0.0015000001, z: 0.0015000001}
+  m_Children: []
+  m_Father: {fileID: 269832813}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -1.31, y: 360, z: 0}
 --- !u!1 &2013023942
 GameObject:
   m_ObjectHideFlags: 0
@@ -27187,7 +27222,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087467482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 4.58, z: 1.85}
+  m_LocalPosition: {x: -0, y: 4.68, z: 2.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 543450651885775393}
@@ -27271,6 +27306,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 210420330773253775, guid: 299614c8fc5e4714e9c033316aa34a68, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 210420332496798511, guid: 299614c8fc5e4714e9c033316aa34a68, type: 3}
       propertyPath: m_Name
       value: Player

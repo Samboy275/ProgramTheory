@@ -1,15 +1,18 @@
 
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class PlayerController : IDamagable
 {
     // game objects
+    [SerializeField] private TextMeshProUGUI playerText;
     [SerializeField] private Camera MainCam;
+    [SerializeField] private Transform RifleHolder;
     // control variables
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float acceleration = 0.6f;
-    [SerializeField] private FireArm gun;
+    [SerializeField] private List <FireArm> guns;
+    [SerializeField] private FireArm currentGun;
     private List<GameObject> bombs;
     [SerializeField] private int bombsLimit;
     private float velocity;
@@ -20,7 +23,9 @@ public class PlayerController : IDamagable
     private void Awake()
     {
         bombs = new List<GameObject>();
-        gun = GetComponentInChildren<FireArm>();
+        guns = new List<FireArm>();
+        guns.Add(GetComponentInChildren<FireArm>());
+        currentGun = guns[0];
         velocity = 0;
         anim = GetComponent<Animator>();
     }
@@ -35,18 +40,18 @@ public class PlayerController : IDamagable
     {
         if (!isDead)
         {
-            if (gun.CurrentGunType() == FireArm.GunType.automatic)
+            if (currentGun.CurrentGunType() == FireArm.GunType.automatic)
             {
                 if (Input.GetButton("Fire1"))
                 {
-                    gun.Shoot();
+                    currentGun.Shoot();
                 }
             }
             else
             {
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    gun.Shoot();
+                    currentGun.Shoot();
                 }
             }
             if (Input.GetKeyDown(KeyCode.Space) && bombs.Count > 0)
@@ -58,6 +63,22 @@ public class PlayerController : IDamagable
             }
             Movement();
             Aim();
+            if (guns.Count > 0)
+            {
+                
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    currentGun = guns[0];
+                    guns[0].gameObject.SetActive(true);
+                    guns[1].gameObject.SetActive(false);
+                }
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+                    guns[0].gameObject.SetActive(false);
+                    guns[1].gameObject.SetActive(true);
+                    currentGun = guns[1];
+                }
+            }
         }
     }
 
@@ -172,4 +193,45 @@ public class PlayerController : IDamagable
         }
     }
 
+
+    public void GetWeapon(GameObject weap)
+    {
+        weap.transform.SetParent(RifleHolder);
+        guns.Add(weap.GetComponent<FireArm>());
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.GetComponent<FireArm>() != null)
+        {
+            if (guns.Count > 1)
+            {
+                playerText.text = "Press E to Refill ammo";
+            }
+            else
+            {
+                playerText.text = "Press E to buy the automatic rifle";
+                Debug.Log(other.name);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    Debug.Log("found");
+                    GameObject rifle = other.GetComponent<BuyPickup>().GetItem();
+                    rifle.transform.SetParent(RifleHolder);
+                    rifle.transform.localPosition = Vector3.zero;
+                    rifle.transform.localRotation = Quaternion.Euler(0f, 0f, 0f);
+                    rifle.transform.localScale = new Vector3(0.0015f, 0.0015f, 0.0015f);
+                    rifle.SetActive(false);
+                    guns.Add(rifle.GetComponent<FireArm>());
+                }
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Item")
+        {
+            playerText.text = "";
+        }
+    }
 }

@@ -6,8 +6,8 @@ public class PickUp : MonoBehaviour
 {
     // control variables
     protected float rotationSpeed = 100f;
-    public bool onGround{get; private set;}
-    private void Start()
+    public bool onGround{get; protected set;}
+    protected virtual void Start()
     {
         onGround = false;
     }

@@ -6,7 +6,7 @@ public class HealthPickup : PickUp
 {
     [SerializeField] private int hpAmount = 5;
 
-    private void Start()
+    protected override void Start()
     {
         Drop();
     }
