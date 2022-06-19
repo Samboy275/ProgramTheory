@@ -65,7 +65,7 @@ public class PlayerController : IDamagable
             }
             Movement();
             Aim();
-            if (guns.Count > 0)
+            if (guns.Count > 1)
             {
                 
                 if (Input.GetKeyDown(KeyCode.Q))
@@ -73,11 +73,13 @@ public class PlayerController : IDamagable
                     currentGun = guns[0];
                     guns[0].gameObject.SetActive(true);
                     guns[1].gameObject.SetActive(false);
+                    anim.SetBool("Automatic", false);
                 }
                 if (Input.GetKeyDown(KeyCode.R))
                 {
                     guns[0].gameObject.SetActive(false);
                     guns[1].gameObject.SetActive(true);
+                    anim.SetBool("Automatic", true);
                     currentGun = guns[1];
                 }
             }
@@ -196,10 +198,10 @@ public class PlayerController : IDamagable
     }
 
 
-    public void GetWeapon(GameObject weap)
+    public void GetWeapon(GameObject weapon)
     {
-        weap.transform.SetParent(RifleHolder);
-        guns.Add(weap.GetComponent<FireArm>());
+        weapon.transform.SetParent(RifleHolder);
+        guns.Add(weapon.GetComponent<FireArm>());
     }
 
     private void OnTriggerStay(Collider other)

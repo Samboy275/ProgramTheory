@@ -718,7 +718,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 2478d459ff883ae40ae9adf3dcce9fe5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -1567,15 +1567,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1712357191030830264, guid: 239c17f51cb1fb04d90f18bf8e0b4d81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.018200004
+      value: 0.0153
       objectReference: {fileID: 0}
     - target: {fileID: 1712357191030830264, guid: 239c17f51cb1fb04d90f18bf8e0b4d81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.02952235
+      value: 0.0295
       objectReference: {fileID: 0}
     - target: {fileID: 1712357191030830264, guid: 239c17f51cb1fb04d90f18bf8e0b4d81, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.003642435
+      value: 0.0021
       objectReference: {fileID: 0}
     - target: {fileID: 1712357191030830264, guid: 239c17f51cb1fb04d90f18bf8e0b4d81, type: 3}
       propertyPath: m_LocalRotation.w
