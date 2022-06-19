@@ -18,7 +18,7 @@ public class Enemy : IDamagable
     [SerializeField] private float acceleration;
     [SerializeField] private float maxSpeed;
     [SerializeField] protected int baseDmg;
-
+    [SerializeField] private int points;
     protected override void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -95,7 +95,7 @@ public class Enemy : IDamagable
         if (isDead)
         {
             anim.SetBool("IsDead", isDead);
-            GameManager._Instance.CheckEnemiesRemaining();
+            GameManager._Instance.CheckEnemiesRemaining(points);
             if (GetComponent<Bomber>() == null && GetComponent<Boss>() == null)
             {
                 SpawnManager.Instance.SpawnHpPickUp(transform.position);

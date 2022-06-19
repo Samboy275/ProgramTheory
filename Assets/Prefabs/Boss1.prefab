@@ -10365,6 +10365,7 @@ MonoBehaviour:
   acceleration: 1
   maxSpeed: 5
   baseDmg: 2
+  points: 20
   fireball: {fileID: 5458491855033819417, guid: 4613c687b0df4e940a99b6572c8310ce, type: 3}
   firePoints:
   - {fileID: 8410343885394107533}

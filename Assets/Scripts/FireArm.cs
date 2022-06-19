@@ -22,10 +22,7 @@ public class FireArm : Weapon
     }
 
 
-    public GunType gunType {
-        get; 
-        private set;
-    }
+    [SerializeField] private GunType gunType;
 
     private void Update()
     {
@@ -68,5 +65,10 @@ public class FireArm : Weapon
         }
         trail.transform.position = hit.point;
         Destroy(trail.transform.gameObject, trail.time);
+    }
+
+    public GunType CurrentGunType()
+    {
+        return gunType;
     }
 }

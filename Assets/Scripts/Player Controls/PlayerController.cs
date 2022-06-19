@@ -35,9 +35,19 @@ public class PlayerController : IDamagable
     {
         if (!isDead)
         {
-            if (Input.GetButton("Fire1"))
+            if (gun.CurrentGunType() == FireArm.GunType.automatic)
             {
-                gun.Shoot();
+                if (Input.GetButton("Fire1"))
+                {
+                    gun.Shoot();
+                }
+            }
+            else
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    gun.Shoot();
+                }
             }
             if (Input.GetKeyDown(KeyCode.Space) && bombs.Count > 0)
             {

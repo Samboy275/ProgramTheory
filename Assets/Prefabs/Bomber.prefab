@@ -1050,6 +1050,7 @@ MonoBehaviour:
   acceleration: 1
   maxSpeed: 5
   baseDmg: 0
+  points: 5
   bombTime: 3
   startBombRange: 2
 --- !u!1 &7277368153967716148

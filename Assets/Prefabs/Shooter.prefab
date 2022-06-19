@@ -761,6 +761,7 @@ MonoBehaviour:
   acceleration: 0.6
   maxSpeed: 3
   baseDmg: 0
+  points: 5
   projectile: {fileID: 7732406311140747282, guid: 3833b60bc57155c4aae8e6039699f0ff, type: 3}
   firePosition: {fileID: 1259876747790626807}
   fireRate: 1

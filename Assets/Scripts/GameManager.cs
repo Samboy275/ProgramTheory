@@ -85,8 +85,10 @@ public class GameManager : MonoBehaviour
         isBossFight = false;
     }
 
-    public void CheckEnemiesRemaining()
+    public void CheckEnemiesRemaining(int points)
     {
+        score += points;
+        UpdatePoints();
         if (SpawnManager.Instance.AreAllEnemiesDead())
         {
                 
@@ -101,9 +103,10 @@ public class GameManager : MonoBehaviour
         int timePassed = Mathf.RoundToInt(survivalTime);
         score += (60 - timePassed > 0)? 60 - timePassed : 0; 
         survivalTime = 0;
-        scoreText.text = "Score : " + score;
+        UpdatePoints();
     }
 
+    private void UpdatePoints() => scoreText.text = "Points : " + score;
     public void StartCounter()
     {
         survivalTime = 0;
