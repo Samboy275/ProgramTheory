@@ -806,7 +806,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Money
+  m_text: 'Money: 0$'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1492,7 +1492,7 @@ Transform:
   m_LocalScale: {x: 2.5000005, y: 0.5, z: 2.5000005}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &516985208
 GameObject:
@@ -27792,7 +27792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4255049775306420627, guid: 7d64cd6dc23aa554597663e6e5a0749f, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4255049775306420627, guid: 7d64cd6dc23aa554597663e6e5a0749f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27975,7 +27975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1020903129958911719, guid: 299614c8fc5e4714e9c033316aa34a68, type: 3}
       propertyPath: fireRate
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1020903129958911719, guid: 299614c8fc5e4714e9c033316aa34a68, type: 3}
       propertyPath: firePoint
@@ -27983,7 +27983,7 @@ PrefabInstance:
       objectReference: {fileID: 2087467483}
     - target: {fileID: 1020903129958911719, guid: 299614c8fc5e4714e9c033316aa34a68, type: 3}
       propertyPath: nextBulletTime
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1986344364633707166, guid: 299614c8fc5e4714e9c033316aa34a68, type: 3}
       propertyPath: m_Materials.Array.data[0]

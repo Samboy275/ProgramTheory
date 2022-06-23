@@ -63,11 +63,17 @@ public class SpawnManager : MonoBehaviour
     {
         if (waveNumber % 5 == 0)
         {
-            GameManager._Instance.StartBossFight();
-            SpawnBoss();
             // mobs with boss logic
             int mobs = (waveNumber / 5) - 1;
             SpawnEnemies(mobs);
+            GameManager._Instance.StartBossFight();
+            SpawnBoss();
+        }
+        else if ((waveNumber + 1) % 10 == 0)
+        {
+            int mobs = 5;
+            SpawnEnemies(mobs);
+            SpawnBoss();
         }
         else
         {

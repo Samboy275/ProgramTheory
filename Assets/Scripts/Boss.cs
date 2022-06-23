@@ -165,6 +165,7 @@ public class Boss : Enemy
 
             if (hp == (maxHp / 2) || hp == (maxHp / 4) || hp == (maxHp / 8))
             {
+                anim.ResetTrigger("Attack");
                 currentAttack = AttackTypes.Rage;
                 StartCoroutine(RageAttackTimer());
                 anim.SetBool("Rage", true);
