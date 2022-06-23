@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class IDamagable : MonoBehaviour
 {
     [SerializeField] protected int hp;
-    [SerializeField] private int maxHp;
+    [SerializeField] protected int maxHp;
     [SerializeField] private HealthBar healthBar;
     protected bool isDead;
 

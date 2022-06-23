@@ -41,7 +41,6 @@ public class FireBall : Weapon
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hitting Player");
             other.gameObject.GetComponent<IDamagable>().TakeDamage(dmgAmount);
             Destroy(gameObject);
         }  

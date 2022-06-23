@@ -10357,7 +10357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 10
-  maxHp: 10
+  maxHp: 20
   healthBar: {fileID: 618564111563737806}
   player: {fileID: 0}
   anim: {fileID: 8410343886616596605}
@@ -10371,6 +10371,7 @@ MonoBehaviour:
   - {fileID: 8410343885394107533}
   - {fileID: 8410343886087180842}
   attackBox: {fileID: 8410343884990570745}
+  rotationSpeed: 100
 --- !u!1 &9168177344647643273
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,8 +15,8 @@ public class Enemy : IDamagable
     // control variables
     [SerializeField] protected float attackRange;
     private float velocity;
-    [SerializeField] private float acceleration;
-    [SerializeField] private float maxSpeed;
+    [SerializeField] protected float acceleration;
+    [SerializeField] protected float maxSpeed;
     [SerializeField] protected int baseDmg;
     [SerializeField] private int points;
     protected override void Start()
@@ -68,7 +68,7 @@ public class Enemy : IDamagable
             }
             
             
-            transform.position += transform.forward * velocity * Time.deltaTime;
+            transform.position = Vector3.MoveTowards(transform.position, player.position, velocity *Time.deltaTime);
     }
 
     // ABSTRACTION

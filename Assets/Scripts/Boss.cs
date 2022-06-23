@@ -11,22 +11,26 @@ public class Boss : Enemy
 
     // components
     [SerializeField] BoxCollider attackBox;
+    [SerializeField] BoxCollider rageBox;
 
     // control variables
     private int numofAttacks;
+    [SerializeField] private float rotationSpeed;
     private bool firing;
 
     // enum to check which attack state
     private enum AttackTypes
     {
         normal,
-        fireballs
+        fireballs,
+        Rage
     }
 
-    private AttackTypes currentAttack;
+    [SerializeField] private AttackTypes currentAttack;
     protected override void Start()
     {
         attackBox.enabled = false;
+        rageBox.enabled = false;
         firing = false;
         numofAttacks = 0;
         currentAttack = AttackTypes.normal;
@@ -44,6 +48,10 @@ public class Boss : Enemy
                     break;
                 case AttackTypes.fireballs:
                     StartCoroutine(Attack(2));
+                    break;
+                case AttackTypes.Rage:
+                    StartCoroutine(RageAttackTimer());
+                    RageAttack();
                     break;
             }
         }
@@ -89,16 +97,48 @@ public class Boss : Enemy
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("attacked");
             player.GetComponent<PlayerController>().TakeDamage(baseDmg);
             attackBox.enabled = false;
         }
     }
 
+    IEnumerator RageAttackTimer()
+    {
+        if (currentAttack == AttackTypes.Rage)
+        {
+            yield return null;
+        }
+        rageBox.enabled = true;
+        float accelerationOrigin = acceleration; // saving original acceleration value
+        float maxSpeedOrigin = maxSpeed; // saving original speed value'
+        maxSpeed = 8;
+
+        yield return new WaitForSeconds(5);
+
+        acceleration = accelerationOrigin;
+        maxSpeed = 5;
+        anim.SetBool("Rage", false);
+        rageBox.enabled = false;    
+        currentAttack = AttackTypes.normal;
+       
+    }
+    private void RageAttack()
+    {
+        if (!PlayerInRange())
+        {
+            MoveTowardsPlayer();
+        }
+        transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+    }
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag("Projectile"))
         {
-            ChargeFireBall();
+            if (currentAttack != AttackTypes.Rage)
+            {
+                ChargeFireBall();
+            }
             attackBox.enabled = false;
         }
     }
@@ -115,10 +155,20 @@ public class Boss : Enemy
     // POLYMORPHISM
     public override void TakeDamage(int amount = 1)
     {
-        base.TakeDamage(amount);
-        if (isDead)
+        if (currentAttack != AttackTypes.Rage)
         {
-            GameManager._Instance.EndBossFight();
+            base.TakeDamage(amount);
+            if (isDead)
+            {
+                GameManager._Instance.EndBossFight();
+            }
+
+            if (hp == (maxHp / 2) || hp == (maxHp / 4) || hp == (maxHp / 8))
+            {
+                currentAttack = AttackTypes.Rage;
+                StartCoroutine(RageAttackTimer());
+                anim.SetBool("Rage", true);
+            }
         }
     }
 }
